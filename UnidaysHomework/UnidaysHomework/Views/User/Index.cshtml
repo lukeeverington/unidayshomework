@@ -1,0 +1,29 @@
+﻿@model UnidaysHomework.Models.CreateUserInputModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create a new user</title>
+</head>
+<body>
+    <header>Create a new User</header>
+    <div> 
+        @using (Html.BeginForm("create", "user", FormMethod.Post))
+        {
+            @Html.LabelFor(m => m.EmailAddress)
+            @Html.TextBoxFor(m => m.EmailAddress)
+            <br />
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
+            <br />
+            @:<button type="submit">Create</button>
+        }
+    </div>
+</body>
+</html>
