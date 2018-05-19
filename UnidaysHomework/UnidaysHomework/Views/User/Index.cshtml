@@ -16,6 +16,8 @@
     <div> 
         @using (Html.BeginForm("create", "user", FormMethod.Post))
         {
+            @Html.ValidationSummary()
+
             @Html.LabelFor(m => m.EmailAddress)
             @Html.TextBoxFor(m => m.EmailAddress)
             <br />

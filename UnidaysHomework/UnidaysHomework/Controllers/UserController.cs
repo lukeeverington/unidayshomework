@@ -20,6 +20,23 @@ namespace UnidaysHomework.Controllers
 
         public ActionResult Create(CreateUserInputModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", model);
+            }
+
+            var result = _userService.Create(new CreateUserParameters(model.EmailAddress, model.Password));
+
+            if (result.Success)
+            {
+
+            }
+            else
+            {
+
+            }
+
+
             return null;
         }
     }

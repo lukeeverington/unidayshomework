@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Models\CreateUserInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\CheckIfUserExistsValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -114,6 +115,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UnidaysHomework.Data\UnidaysHomework.Data.csproj">
+      <Project>{e9f1b5f6-f628-4cc0-a09c-fbcc886280fd}</Project>
+      <Name>UnidaysHomework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniDaysHomework.Services\UniDaysHomework.Services.csproj">
+      <Project>{9741069a-871a-4591-8cf4-6447dafd5811}</Project>
+      <Name>UniDaysHomework.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

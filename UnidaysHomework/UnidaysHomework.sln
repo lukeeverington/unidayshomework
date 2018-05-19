@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnidaysHomework.PasswordHas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AD8B3AF3-34F6-4962-B37A-62108158D058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDaysHomework.Services", "UniDaysHomework.Services\UniDaysHomework.Services.csproj", "{9741069A-871A-4591-8CF4-6447DAFD5811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnidaysHomework.Data", "UnidaysHomework.Data\UnidaysHomework.Data.csproj", "{E9F1B5F6-F628-4CC0-A09C-FBCC886280FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +38,14 @@ Global
 		{632EAC75-BE2B-48D3-B3DA-D413BDF930B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{632EAC75-BE2B-48D3-B3DA-D413BDF930B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{632EAC75-BE2B-48D3-B3DA-D413BDF930B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9741069A-871A-4591-8CF4-6447DAFD5811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9741069A-871A-4591-8CF4-6447DAFD5811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9741069A-871A-4591-8CF4-6447DAFD5811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9741069A-871A-4591-8CF4-6447DAFD5811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F1B5F6-F628-4CC0-A09C-FBCC886280FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F1B5F6-F628-4CC0-A09C-FBCC886280FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F1B5F6-F628-4CC0-A09C-FBCC886280FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F1B5F6-F628-4CC0-A09C-FBCC886280FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
