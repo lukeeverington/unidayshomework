@@ -43,7 +43,7 @@ namespace UniDaysHomework.Services.Validation
             {
                 yield return "Password is required";
             }
-            else if(_passwordValidator.IsValidPassword(item.Password))
+            else if(!_passwordValidator.IsValidPassword(item.Password))
             {
                 yield return "Password is not valid";
             }
@@ -64,7 +64,9 @@ namespace UniDaysHomework.Services.Validation
     {
         public bool IsValidEmailAddress(string emailAddressToValidate)
         {
-            throw new NotImplementedException();
+            return true;
+
+            // TODO: actually validate the email address
         }
     }
 
@@ -77,7 +79,9 @@ namespace UniDaysHomework.Services.Validation
     {
         public bool IsValidPassword(string passwordToValidate)
         {
-            throw new NotImplementedException();
+            return true;
+            
+            // TODO: actually validate the password
         }
     }
 }

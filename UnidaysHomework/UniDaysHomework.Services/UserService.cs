@@ -29,9 +29,9 @@ namespace UniDaysHomework.Services
 
             var hashedPassword = _passwordHasher.Hash(parameters.Password);
 
-            var userId = _userStore.Create(parameters.EmailAddress, hashedPassword);
+            _userStore.Create(parameters.EmailAddress, hashedPassword);
 
-            return CreateUserResult.CreateSuccessResult(userId);
+            return CreateUserResult.CreateSuccessResult();
         }
     }
 }

@@ -5,24 +5,22 @@ namespace UniDaysHomework.Services
     public class CreateUserResult
     {
         public readonly bool Success;
-        public readonly int? UserId;
         public readonly List<string> Errors;
 
-        private CreateUserResult(bool success, int? userId, List<string> errors)
+        private CreateUserResult(bool success, List<string> errors)
         {
             Success = success;
-            UserId = userId;
             Errors = errors;
         }
 
         public static CreateUserResult CreateFailureResult(List<string> errors)
         {
-            return new CreateUserResult(false, null, errors);
+            return new CreateUserResult(false, errors);
         }
 
-        public static CreateUserResult CreateSuccessResult(int userId)
+        public static CreateUserResult CreateSuccessResult()
         {
-            return new CreateUserResult(true, userId, null);
+            return new CreateUserResult(true, null);
         }
     }
 }

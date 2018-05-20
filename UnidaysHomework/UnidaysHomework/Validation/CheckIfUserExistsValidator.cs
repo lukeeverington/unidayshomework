@@ -32,8 +32,12 @@ namespace UnidaysHomework.Validation
         {
             var password = value as string;
 
-            if (
-                MeetsMinLength(password) && 
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return new ValidationResult("Password is required");
+            }
+
+            if (MeetsMinLength(password) && 
                 MeetsMaxLength(password) && 
                 ContainsLowerCase(password) && 
                 ContainsUpperCase(password) && 
@@ -43,7 +47,7 @@ namespace UnidaysHomework.Validation
             }
 
             return new ValidationResult(
-                @"The password is does not meet the minimum requirements. Ensure it contains between {minChars} and {maxChars characters and contains at least one upper case letter, one lower case letter and one number.}", new List<string> { "Password" });
+                $@"The password is does not meet the minimum requirements. Ensure it contains between {minChars} and {maxChars} characters and contains at least one upper case letter, one lower case letter and one number.", new List<string> { "Password" });
         }
 
         private bool MeetsMinLength(string password)
