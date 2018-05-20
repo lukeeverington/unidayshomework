@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnidaysHomework.Data;
 
 namespace UniDaysHomework.Services.Validation
@@ -62,11 +64,11 @@ namespace UniDaysHomework.Services.Validation
 
     public class StandardEmailAddressValidator : IEmailAddressValidator
     {
-        public bool IsValidEmailAddress(string emailAddressToValidate)
-        {
-            return true;
+        private const string _emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
 
-            // TODO: actually validate the email address
+        public bool IsValidEmailAddress(string passwordToValidate)
+        {
+            return Regex.IsMatch(passwordToValidate, _emailRegex);
         }
     }
 
@@ -77,11 +79,51 @@ namespace UniDaysHomework.Services.Validation
 
     public class StandardPasswordValidator : IPasswordValidator
     {
+        private const int minChars = 4;
+        private const int maxChars = 30;
+
         public bool IsValidPassword(string passwordToValidate)
         {
-            return true;
-            
-            // TODO: actually validate the password
+            if (string.IsNullOrWhiteSpace(passwordToValidate))
+            {
+                return false;
+            }
+
+            if (MeetsMinLength(passwordToValidate) &&
+                MeetsMaxLength(passwordToValidate) &&
+                ContainsLowerCase(passwordToValidate) &&
+                ContainsUpperCase(passwordToValidate) &&
+                ContainsNumber(passwordToValidate))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool MeetsMinLength(string password)
+        {
+            return password.Length >= minChars;
+        }
+
+        private bool MeetsMaxLength(string password)
+        {
+            return password.Length <= maxChars;
+        }
+
+        private bool ContainsUpperCase(string password)
+        {
+            return password.Any(char.IsUpper);
+        }
+
+        private bool ContainsLowerCase(string password)
+        {
+            return password.Any(char.IsLower);
+        }
+
+        private bool ContainsNumber(string password)
+        {
+            return password.Any(char.IsDigit);
         }
     }
 }
