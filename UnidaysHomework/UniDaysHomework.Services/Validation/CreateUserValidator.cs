@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnidaysHomework.Data;
 
 namespace UniDaysHomework.Services.Validation
@@ -59,8 +60,24 @@ namespace UniDaysHomework.Services.Validation
         bool IsValidEmailAddress(string emailAddressToValidate);
     }
 
+    public class StandardEmailAddressValidator : IEmailAddressValidator
+    {
+        public bool IsValidEmailAddress(string emailAddressToValidate)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public interface IPasswordValidator
     {
         bool IsValidPassword(string passwordToValidate);
+    }
+
+    public class StandardPasswordValidator : IPasswordValidator
+    {
+        public bool IsValidPassword(string passwordToValidate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

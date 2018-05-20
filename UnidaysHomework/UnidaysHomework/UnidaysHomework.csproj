@@ -48,6 +48,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -99,6 +115,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateUserInputModel.cs" />
+    <Compile Include="NinjectModules\DataModule.cs" />
+    <Compile Include="NinjectModules\ServicesModule.cs" />
+    <Compile Include="NinjectModules\PasswordHashingModule.cs" />
+    <Compile Include="NinjectModules\WebModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\CheckIfUserExistsValidator.cs" />
   </ItemGroup>
@@ -120,6 +140,10 @@
     <ProjectReference Include="..\UnidaysHomework.Data\UnidaysHomework.Data.csproj">
       <Project>{e9f1b5f6-f628-4cc0-a09c-fbcc886280fd}</Project>
       <Name>UnidaysHomework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnidaysHomework.PasswordHashing\UnidaysHomework.PasswordHashing.csproj">
+      <Project>{632eac75-be2b-48d3-b3da-d413bdf930b9}</Project>
+      <Name>UnidaysHomework.PasswordHashing</Name>
     </ProjectReference>
     <ProjectReference Include="..\UniDaysHomework.Services\UniDaysHomework.Services.csproj">
       <Project>{9741069a-871a-4591-8cf4-6447dafd5811}</Project>
