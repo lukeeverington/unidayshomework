@@ -13,31 +13,34 @@ namespace UnidaysHomework.Controllers
             _userService = userService;
         }
 
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Create()
         {
             return View();
         }
 
+        [HttpPost]
         public ActionResult Create(CreateUserInputModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View("Index", model);
+                return View("Create", model);
             }
 
             var result = _userService.Create(new CreateUserParameters(model.EmailAddress, model.Password));
 
             if (result.Success)
             {
-
+                ViewBag.Message = $"User {model.EmailAddress} created.";
+                return View(new CreateUserInputModel()
+                {
+                    EmailAddress = string.Empty,
+                    Password = string.Empty
+                });
             }
-            else
-            {
 
-            }
-
-
-            return null;
+            ViewBag.Message = $"Sorry something went wrong. Please try again.";
+            return View(model);
         }
     }
 }

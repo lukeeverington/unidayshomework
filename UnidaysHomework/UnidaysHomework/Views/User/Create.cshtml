@@ -14,15 +14,17 @@
 <body>
     <header>Create a new User</header>
     <div> 
+        @ViewBag.Message
+
         @using (Html.BeginForm("create", "user", FormMethod.Post))
         {
-            @Html.ValidationSummary()
-
             @Html.LabelFor(m => m.EmailAddress)
             @Html.TextBoxFor(m => m.EmailAddress)
+            @Html.ValidationMessageFor(m => m.EmailAddress)
             <br />
             @Html.LabelFor(m => m.Password)
             @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
             <br />
             @:<button type="submit">Create</button>
         }

@@ -31,6 +31,11 @@ namespace UnidaysHomework.Data
 
         public bool UserExists(string emailAddress)
         {
+            if (string.IsNullOrWhiteSpace(emailAddress))
+            {
+                return false;
+            }
+
             var command = new SqlCommand(ExistsSql, _sqlConnection);
             command.Parameters.AddWithValue("@emailAddress", emailAddress);
 
