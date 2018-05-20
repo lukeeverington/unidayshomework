@@ -4,13 +4,10 @@ USE UniDaysHomework
 
 CREATE TABLE [User] (
 	Id INT IDENTITY(1,1) NOT NULL,
-	EmailAddress VARCHAR(320),
-	PasswordHash NVARCHAR(60),
+	EmailAddress VARCHAR(320) NOT NULL UNIQUE,
+	PasswordHash NVARCHAR(60) NOT NULL,
 	PRIMARY KEY (Id)
 )
-
-ALTER TABLE [User]
-ADD UNIQUE (EmailAddress)
 
 CREATE LOGIN UniDaysHomeworkWebsite 
 WITH PASSWORD = 'f95a976169a3818c21f84ada5c2e74aa2cb5b08da58397d0f85e80f256e3fff9'
