@@ -9,6 +9,9 @@ CREATE TABLE [User] (
 	PRIMARY KEY (Id)
 )
 
+ALTER TABLE [User]
+ADD UNIQUE (EmailAddress)
+
 CREATE LOGIN UniDaysHomeworkWebsite 
 WITH PASSWORD = 'f95a976169a3818c21f84ada5c2e74aa2cb5b08da58397d0f85e80f256e3fff9'
 
