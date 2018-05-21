@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnidaysHomework", "UnidaysHomework\UnidaysHomework.csproj", "{ED69AF83-1022-4C29-9227-C69D56FEDA7B}"
 EndProject
@@ -59,5 +59,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{831F5DA6-093D-49C0-97A7-76CE2C53302E} = {AD8B3AF3-34F6-4962-B37A-62108158D058}
 		{34A39130-7A02-480D-AAC9-67580A818100} = {AD8B3AF3-34F6-4962-B37A-62108158D058}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C76C9EB-04E9-442F-B93E-347DD28DCDE3}
 	EndGlobalSection
 EndGlobal

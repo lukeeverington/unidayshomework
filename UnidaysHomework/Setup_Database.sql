@@ -1,5 +1,7 @@
 ﻿CREATE DATABASE UniDaysHomework
+GO
 
+BEGIN TRANSACTION
 USE UniDaysHomework
 
 CREATE TABLE [User] (
@@ -10,10 +12,15 @@ CREATE TABLE [User] (
 )
 
 CREATE LOGIN UniDaysHomeworkWebsite 
-WITH PASSWORD = 'f95a976169a3818c21f84ada5c2e74aa2cb5b08da58397d0f85e80f256e3fff9'
+WITH PASSWORD = 'F95a976169a3818c21f84ada5c2e74aa2cb5b08da58397d0f85e80f256e3fff9'
+
+CREATE LOGIN UniDaysHomeworkAcceptanceTests 
+WITH PASSWORD = '51Be8bd9d20be6099948e841b160dec816fe49fb2ee6379dda9b2980ac9239c3'
 
 CREATE USER UniDaysHomeworkWebsite 
 FOR LOGIN UniDaysHomeworkWebsite
 
 GRANT SELECT TO UniDaysHomeworkWebsite
 GRANT INSERT TO UniDaysHomeworkWebsite
+
+COMMIT TRANSACTION

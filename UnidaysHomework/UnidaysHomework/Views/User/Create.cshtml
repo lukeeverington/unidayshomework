@@ -19,14 +19,14 @@
         @using (Html.BeginForm("create", "user", FormMethod.Post))
         {
             @Html.LabelFor(m => m.EmailAddress)
-            @Html.TextBoxFor(m => m.EmailAddress)
+            @Html.TextBoxFor(m => m.EmailAddress, new Dictionary<string, string>() { {"id", "txtEmailAddress"} })
             @Html.ValidationMessageFor(m => m.EmailAddress)
             <br />
             @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new Dictionary<string, string>() { { "id", "txtPassword" } })
             @Html.ValidationMessageFor(m => m.Password)
             <br />
-            @:<button type="submit">Create</button>
+            @:<button type="submit" id="btnSubmit">Create</button>
         }
     </div>
 </body>
