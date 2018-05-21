@@ -4,6 +4,7 @@ using System.Linq;
 using Dapper;
 using NUnit.Framework;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -28,6 +29,7 @@ namespace UnidaysHomework.Tests.Acceptance
         [AfterScenario]
         public void ShutdownWebDriver()
         {
+            Driver?.Wait(1000);
             Driver?.Close();
             Driver?.Dispose();
         }
@@ -82,7 +84,6 @@ namespace UnidaysHomework.Tests.Acceptance
         public void GivenIAmUsingTheLocalInstanceOfTheWebsite()
         {
             SiteUrl = "http://localhost:51963/";
-            Driver.Url(SiteUrl);
         }
 
         [Given(@"I have already added the test user to the database")]
@@ -90,26 +91,34 @@ namespace UnidaysHomework.Tests.Acceptance
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UniDaysDatabase"].ConnectionString))
             {
-                conn.Execute("DELETE FROM [User] WHERE Email = @EmailAddress; INSERT INTO [User] (EmailAddress, Password) VALUES (@EmailAddress, @Password)", new { TestCredentials.EmailAddress, TestCredentials.Password });
+                conn.Execute("DELETE FROM [User] WHERE EmailAddress = @EmailAddress; INSERT INTO [User] (EmailAddress, PasswordHash) VALUES (@EmailAddress, 'somehashedpassword')", new { TestCredentials.EmailAddress, TestCredentials.Password });
             }
         }
 
         [When(@"I complete the add user form with the test credentials")]
         public void WhenICompleteTheAddUserFormWithTheTestCredentials()
         {
-            Driver.SetTextForId("txtEmailAddress", TestCredentials.EmailAddress, true);
-            Driver.SetTextForId("txtPassword", TestCredentials.Password, true);
-            Driver.Submit();
+            Driver.Url(SiteUrl);
+            Driver.SetTextForId("EmailAddress", TestCredentials.EmailAddress, true);
+            Driver.SetTextForId("Password", TestCredentials.Password, true);
+            Driver.Wait(100);
+            new Actions(Driver).Click(Driver.FindElementById("submit")).Perform();
+            Driver.WaitForNavigationToComplete();
+            Driver.Wait(3000);
         }
 
         [When(@"I complete the add user form without entering any details")]
         public void WhenICompleteTheAddUserFormWithoutEnteringAnyDetails()
         {
+            Driver.Url(SiteUrl);
             // should be empty anyway, but just in case...
-            Driver.SetTextForId("txtEmailAddress", string.Empty, true);
-            Driver.SetTextForId("txtPassword", string.Empty, true);
+            Driver.SetTextForId("EmailAddress", string.Empty, true);
+            Driver.SetTextForId("Password", string.Empty, true);
 
-            Driver.Submit();
+            Driver.Wait(100);
+            new Actions(Driver).Click(Driver.FindElementById("submit")).Perform();
+            Driver.WaitForNavigationToComplete();
+            Driver.Wait(3000);
         }
 
         [When(@"I complete the add user form with the details")]
@@ -117,8 +126,9 @@ namespace UnidaysHomework.Tests.Acceptance
         {
             TestCredentials = table.CreateInstance<FormInput>();
 
-            Driver.SetTextForId("txtEmailAddress", TestCredentials.EmailAddress);
-            Driver.SetTextForId("txtPassword", TestCredentials.Password);
+            Driver.Url(SiteUrl);
+            Driver.SetTextForId("EmailAddress", TestCredentials.EmailAddress);
+            Driver.SetTextForId("Password", TestCredentials.Password);
             Driver.Submit();
         }
 
@@ -127,7 +137,7 @@ namespace UnidaysHomework.Tests.Acceptance
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UniDaysDatabase"].ConnectionString))
             {
-                UserInDatabase = conn.Query<UserDatabaseModel>("SELECT Id, EmailAddress, PasswordHash FROM [User] WHERE Email = @EmailAddress", new { TestCredentials.EmailAddress, TestCredentials.Password }).SingleOrDefault();
+                UserInDatabase = conn.Query<UserDatabaseModel>("SELECT Id, EmailAddress, PasswordHash FROM [User] WHERE EmailAddress = @EmailAddress", new { TestCredentials.EmailAddress }).SingleOrDefault();
             }
 
             Assert.IsNotNull(UserInDatabase);
@@ -137,7 +147,6 @@ namespace UnidaysHomework.Tests.Acceptance
         [Then(@"the password will have been hashed")]
         public void ThenThePasswordWillHaveBeenHashed()
         {
-
             // ensure there's something there, and that it's not the unhashed password, we'll trust that this is the hashed version
             Assert.IsFalse(string.IsNullOrWhiteSpace(UserInDatabase.PasswordHash));
             Assert.AreNotEqual(TestCredentials.Password, UserInDatabase.PasswordHash);
@@ -160,7 +169,7 @@ namespace UnidaysHomework.Tests.Acceptance
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UniDaysDatabase"].ConnectionString))
             {
-                UserInDatabase = conn.Query<UserDatabaseModel>("SELECT Id, EmailAddress, PasswordHash FROM [User] WHERE Email = @EmailAddress", new { TestCredentials.EmailAddress, TestCredentials.Password }).SingleOrDefault();
+                UserInDatabase = conn.Query<UserDatabaseModel>("SELECT Id, EmailAddress, PasswordHash FROM [User] WHERE EmailAddress = @EmailAddress", new { TestCredentials.EmailAddress, TestCredentials.Password }).SingleOrDefault();
             }
 
             // With did .SingleOrDefault() so this woud be null if  there was more than one user with the same email address
